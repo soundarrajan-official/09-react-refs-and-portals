@@ -1,17 +1,16 @@
-import {useRef, useState} from "react";
+import {useRef} from "react";
 
 export default function Player() {
     let playerNameRef = useRef(null)
-    const [enteredPlayerName, setEnteredPlayerName] = useState("")
 
     const clickHandler = () => {
-        setEnteredPlayerName(playerNameRef.current.value)
         playerNameRef.current.value = ""
     }
 
   return (
     <section id="player">
-      <h2>Welcome {enteredPlayerName ? enteredPlayerName : "unknown entity"}</h2>
+      {/*  Doesn't not cause component re evaluation when changed */}
+      <h2>Welcome {playerNameRef.current ? playerNameRef.current.value : "unknown entity"}</h2>
       <p>
         <input
             ref={playerNameRef}
